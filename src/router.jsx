@@ -2,7 +2,8 @@ import React, { lazy, Suspense } from 'react';
 import {
   createRouter,
   createRootRoute,
-  createRoute
+  createRoute,
+  Outlet
 } from '@tanstack/react-router';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
