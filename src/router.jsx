@@ -3,7 +3,7 @@ import {
   createRouter,
   createRootRoute,
   createRoute,
-  Outlet
+  Outlet // This was the missing piece!
 } from '@tanstack/react-router';
 import { ErrorBoundary } from './components/ErrorBoundary';
 
@@ -15,41 +15,33 @@ const rootRoute = createRootRoute({
   component: () => (
     <ErrorBoundary>
       <Suspense
-  fallback={
-    <div className="min-h-screen flex items-center justify-center">
-      <p className="animate-pulse text-gray-500">Loading…</p>
-    </div>
-  }
->
-
+        fallback={
+          <div className="min-h-screen flex items-center justify-center">
+            <p className="animate-pulse text-gray-500 font-medium">Loading…</p>
+          </div>
+        }
+      >
         <Outlet />
       </Suspense>
     </ErrorBoundary>
-  )
+  ),
+        j
+  notFoundComponent: () => <NotFound />,
 });
 
 const homeRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/',
-  component: Home
+  component: Home,
 });
 
 const postRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/post/$postId',
-  component: PostDetail
+  component: PostDetail,
 });
 
-const notFoundRoute = createRoute({
-  getParentRoute: () => rootRoute,
-  path: '*',
-  component: NotFound
-});
 
-const routeTree = rootRoute.addChildren([
-  homeRoute,
-  postRoute,
-  notFoundRoute
-]);
+const routeTree = rootRoute.addChildren([homeRoute, postRoute]);
 
 export const router = createRouter({ routeTree });
