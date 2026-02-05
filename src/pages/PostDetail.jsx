@@ -2,7 +2,7 @@ import { useParams, useNavigate } from '@tanstack/react-router';
 import { posts } from '../data/posts';
 
 export default function PostDetail() {
-  const { postId } = useParams({ strict: false });
+  const { postId } = useParams({ from: '/post/$postId' });
   const navigate = useNavigate();
 
   const post = posts.find(p => p.id === postId);
