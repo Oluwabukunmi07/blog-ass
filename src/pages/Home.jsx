@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router';
 import { posts } from '../data/posts';
+import React from 'react';
 
 export default function Home() {
   return (

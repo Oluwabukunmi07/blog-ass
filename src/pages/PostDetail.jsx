@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from '@tanstack/react-router';
 import { posts } from '../data/posts';
+import React from 'react';
 
 export default function PostDetail() {
   const { postId } = useParams({ from: '/post/$postId' });
